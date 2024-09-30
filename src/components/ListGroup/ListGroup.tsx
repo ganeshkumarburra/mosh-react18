@@ -8,13 +8,12 @@ list-style: none;
 `
 
 interface ListItemProps {
-  active : boolean
+  $active : string
 }
 
 const ListItem = styled.li<ListItemProps>`
-padding: 5;
-background : ${(props => props.active ? 'blue' : 'node')}
-}
+padding: 5px;
+background-color: ${(props) => (props.$active === 'true' ? 'blue' : 'none')};
 `
 
 interface ListGroupProps {
@@ -33,10 +32,7 @@ function ListGroup({ items, heading , onSelectItem}: ListGroupProps) {
       <List>
         {items.map((item, index) => (
           <ListItem
-            // className={`list-group-item ${
-            //   selectedIndex === index ? "active" : ""
-            // }`}
-            active = {selectedIndex === index ? true : false}
+            $active = {(selectedIndex === index).toString() }
             key={item}
             onClick={() => {
               setSelectedIndex(index);
@@ -47,18 +43,6 @@ function ListGroup({ items, heading , onSelectItem}: ListGroupProps) {
           </ListItem>
         ))}
       </List>
-
-      {/* {items.length == 0 ? (
-        <h2>Elements not found</h2>
-      ) : (
-        <ul className="list-group">
-          {items.map((item) => (
-            <li className="list-group-item" key={item}>
-              {item}
-            </li>
-          ))}
-        </ul>
-      )} */}
     </>
   );
 }
