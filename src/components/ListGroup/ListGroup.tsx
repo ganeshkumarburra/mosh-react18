@@ -1,4 +1,5 @@
 import { useState } from "react";
+import styles from  './ListGroup.module.css'
 
 interface ListGroupProps {
   items: string[];
@@ -13,7 +14,7 @@ function ListGroup({ items, heading , onSelectItem}: ListGroupProps) {
     <>
       <h1>{heading}</h1>
       {items.length == 0 && <h2>Elements not found</h2>}
-      <ul className="list-group">
+      <ul className={[styles['list-group'] , styles.fontSize ].join(' ')}>
         {items.map((item, index) => (
           <li
             className={`list-group-item ${
